@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header/>
-    <!-- <img alt="Amos Guardian" src="./assets/guardian-amos-logo.png"> -->
+    <router-view class="view"></router-view>
   </div>
 </template>
 
@@ -45,5 +45,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 300vh;
+}
+
+.view {
+  padding-top: 65px;
 }
 </style>

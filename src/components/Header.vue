@@ -9,10 +9,10 @@
       <nav class="nav-container">
           <ul>
               <li>
-                  <p class="nav-link">leaderboard</p>
+                  <router-link to="/" class="nav-link">leaderboard</router-link>
               </li>
               <li>
-                  <p class="nav-link">statistiques</p>
+                  <router-link to="/statistics" class="nav-link">statistiques</router-link>
               </li>
           </ul>
       </nav>
@@ -86,6 +86,8 @@ export default {
 .nav-link {
     padding: 10px;
     border-radius: 10px;
+    text-decoration: none;
+    color: var(--white);
     transition: 0.5s;
 }
 
