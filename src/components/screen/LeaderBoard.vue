@@ -34,6 +34,7 @@
             sortable: false,
             value: 'name',
           },
+          { text: "Position", value: "position" },
           { text: "Score", value: "score" },
           { text: "Nombre d'amos", value: "amos_count" },
           { text: "Nombre de type d'amos découvert", value: "amos_type_count" },
@@ -44,7 +45,7 @@
         leaders: null
       }
     },
-    beforeMount() {
+    mounted() {
       this.$axios.get("https://happy-amos.herokuapp.com/leaderboard").then(response => {
         this.leaders = response.data.leaderboard;
         for (let i = 0; i < this.leaders.length; i++) {
