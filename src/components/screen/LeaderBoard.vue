@@ -1,12 +1,24 @@
 <template>
   <div class="leaderboard">
-      <h1 class="leaderboard-title">LeaderBoard</h1>
+    <h1 class="leaderboard-title">LeaderBoard</h1>
+    <v-card class="leaderboard-card">
+      <v-card-title>
+        <v-text-field
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
       <v-data-table v-if="leaders != null"
         :headers="headers"
         :items="leaders"
         :items-per-page="10"
         class="elevation-1"
+        :search="search"
       ></v-data-table>
+    </v-card>
   </div>
 </template>
 
@@ -14,6 +26,7 @@
   export default {
     data () {
       return {
+        search: "",
         headers: [
           {
             text: 'LeaderBoard',
@@ -26,7 +39,7 @@
           { text: "Nombre de type d'amos découvert", value: "amos_type_count" },
           { text: "Niveau total des amos", value: "total_amos_level" },
           { text: "Type d'amos préferé", value: "amos_type_prefer" },
-          { text: "Date de la dernière capture", value: "last_catch" }
+          { text: "Dernière capture", value: "last_catch" }
         ],
         leaders: null
       }
@@ -35,7 +48,7 @@
       this.$axios.get("https://happy-amos.herokuapp.com/leaderboard").then(response => {
         this.leaders = response.data.leaderboard;
         for (let i = 0; i < this.leaders.length; i++) {
-          this.leaders[i].last_catch = this.$moment(this.leaders[i].last_catch).fromNow();
+          this.leaders[i].last_catch = this.$moment(this.leaders[i].last_catch).locale("fr").fromNow();
         }
       }).catch(error => {
         console.log(error);
@@ -52,9 +65,10 @@
 .leaderboard-title {
   width: 100%;
   text-align: center;
+  color: var(--secondary_c);
 }
 
-.elevation-1 {
+.leaderboard-card {
   width: 100%;
   margin-top: 20px;
 }
