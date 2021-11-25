@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header/>
-    <router-view class="view"></router-view>
+    <div class="view">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -49,5 +51,9 @@ export default {
 
 .view {
   padding-top: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 </style>
