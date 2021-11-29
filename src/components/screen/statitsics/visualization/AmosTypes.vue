@@ -1,7 +1,7 @@
 <template>
   <v-card class="visualisation">
     <h2 class="visualisation-title">Plop</h2>
-    <canvas ref="specieschart" id="species-chart" class="species-chart"></canvas>
+    <canvas ref="typeschart" id="types-chart" class="types-chart"></canvas>
   </v-card>
 </template>
 
@@ -16,13 +16,12 @@ export default {
         datasets: [
           {
             label: 'Dataset 1',
-            data: [1,4,2,5,7],
+            data: [1,4,2,5],
             backgroundColor: [
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "blue"
+              "rgba(233, 37, 47, 0.6)",
+              "rgba(253, 224, 0, 0.6)",
+              "rgba(0, 0, 0, 0.6)",
+              "rgba(58, 87, 144, 0.6)"
             ],
           }
         ]
@@ -37,11 +36,11 @@ export default {
   },
   methods: {
     createChart() {
-      let ctx = this.$refs.specieschart;
+      let ctx = this.$refs.typeschart;
       let data = this.data;
       let options = this.options;
       new Chart(ctx, {
-        type: "pie",
+        type: "doughnut",
         data,
         options
       });
@@ -54,7 +53,7 @@ export default {
 </script>
 
 <style>
-.species-chart {
+.types-chart {
   padding: 10px;
   margin-bottom: 10px;
 }
