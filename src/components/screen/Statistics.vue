@@ -21,7 +21,12 @@ export default {
   methods: {
     findGlobalStats() {
       this.$axios.get("https://happy-amos.herokuapp.com/amos/global/stats").then(response => {
-        this.locations = response.data.amos_location;
+        console.log(response.data);
+        // this.locations = response.data.amos_location;
+        this.$store.commit("globalStats", response.data);
+        this.$store.commit("locations", response.data.amos_location);
+        this.locations = this.$store.state.locations;
+        console.log(this.locations);
         this.dataLoaded = true;
       }).catch(error => {
         console.log(error);
@@ -29,7 +34,13 @@ export default {
     }
   },
   mounted() {
-    this.findGlobalStats();
+    if (this.$store.state.locations === null) {
+      this.findGlobalStats();
+    } else {
+      this.locations = this.$store.state.locations;
+      console.log(this.locations);
+      this.dataLoaded = true;
+    }
   }
 }
 </script>

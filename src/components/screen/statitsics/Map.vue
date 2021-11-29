@@ -41,9 +41,14 @@ export default {
   },
   methods: {
     managerMarker() {
-      for (let i = 0; i < this.location.length; i++) {
-        let latlong = geohash.decode(this.location[i]);
-        this.location[i] = [latlong.latitude, latlong.longitude]
+      try {
+        for (let i = 0; i < this.location.length; i++) {
+          let latlong = geohash.decode(this.location[i]);
+          this.location[i] = [latlong.latitude, latlong.longitude]
+        }
+      } catch (error) {
+        // FIXME: manage error
+        // console.log(error);
       }
       this.markerLatLng = this.location;
       this.markerIsReady = true;

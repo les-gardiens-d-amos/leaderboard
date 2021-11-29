@@ -10,6 +10,7 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 
 import 'leaflet/dist/leaflet.css';
+import store from './store'
 
 Vue.use(VueRouter);
 
@@ -23,5 +24,6 @@ const router = new VueRouter({ routes })
 new Vue({
   router,
   vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')
