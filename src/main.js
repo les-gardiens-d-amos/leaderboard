@@ -9,6 +9,8 @@ import moment from "moment";
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 
+import 'leaflet/dist/leaflet.css';
+
 Vue.use(VueRouter);
 
 Vue.config.productionTip = false;
