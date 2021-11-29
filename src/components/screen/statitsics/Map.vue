@@ -28,8 +28,8 @@ export default {
     return {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:'&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      zoom: 15,
-      center: [51.505, -0.159],
+      zoom: 6,
+      center: null,
       markerLatLng: null,
       markerIcon: icon({
         iconUrl: require("../../../assets/amosIcons/pawIcon.png"),
@@ -50,6 +50,7 @@ export default {
         // FIXME: manage error
         // console.log(error);
       }
+      this.center = this.location[0];
       this.markerLatLng = this.location;
       this.markerIsReady = true;
     }
@@ -62,7 +63,7 @@ export default {
 
 <style scoped>
 .map-container {
-  width: 75%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
