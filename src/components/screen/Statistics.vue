@@ -2,20 +2,24 @@
   <div class="stats-container">
     <h1 class="stats-title">Statistiques</h1>
     <Map :location="locations" v-if="dataLoaded"/>
+    <Stats :amosStats="dataStats" v-if="dataLoaded"/>
   </div>
 </template>
 
 <script>
 import Map from "./statitsics/Map.vue";
+import Stats from "./statitsics/Stats.vue";
 
 export default {
   components: {
-    Map
+    Map,
+    Stats
   },
   data() {
     return {
       locations: null,
-      dataLoaded: false
+      dataLoaded: false,
+      dataStats: null
     }
   },
   methods: {
@@ -24,6 +28,7 @@ export default {
         this.$store.commit("globalStats", response.data);
         this.$store.commit("locations", response.data.amos_location);
         this.locations = this.$store.state.locations;
+        this.dataStats = this.$store.state.globalStats;
         this.dataLoaded = true;
       }).catch(error => {
         console.log(error);
@@ -35,6 +40,7 @@ export default {
       this.findGlobalStats();
     } else {
       this.locations = this.$store.state.locations;
+      this.dataStats = this.$store.state.globalStats;
       this.dataLoaded = true;
     }
   }
