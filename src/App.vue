@@ -20,7 +20,6 @@ export default {
 
 <style>
 :root {
-  --white: #ffffff;
   --primary_c: #495E78;
   --secondary_c: #67697C;
   --tertiary_c: #969696;

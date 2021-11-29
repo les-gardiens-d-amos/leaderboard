@@ -30,7 +30,7 @@ export default {
     width: 100%;
     height: 60px;
     background-color: var(--primary_c);
-    color: var(--white);
+    color: #fff;
     display: flex;
     justify-content: space-between;
     position: fixed;
@@ -47,7 +47,7 @@ export default {
 .image-logo-container {
     width: 14%;
     margin-top: 45px;
-    background-color: var(--white);
+    background-color: #fff;
     border: 4px solid var(--primary_c);
     height: 100px;
     display: flex;
@@ -88,13 +88,13 @@ export default {
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;
-    color: var(--white);
+    color: #fff;
     transition: 0.5s;
 }
 
 .nav-link:hover {
     cursor: pointer;
-    background-color: var(--white);
+    background-color: #fff;
     color: var(--primary_c);
 }
 </style>
