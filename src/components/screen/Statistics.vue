@@ -18,14 +18,18 @@ export default {
       dataLoaded: false
     }
   },
+  methods: {
+    findGlobalStats() {
+      this.$axios.get("https://happy-amos.herokuapp.com/amos/global/stats").then(response => {
+        this.locations = response.data.amos_location;
+        this.dataLoaded = true;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+  },
   mounted() {
-    this.$axios.get("https://happy-amos.herokuapp.com/amos/global/stats").then(response => {
-      // console.log(response.data);
-      this.locations = response.data.amos_location;
-      this.dataLoaded = true;
-    }).catch(error => {
-      console.log(error);
-    })
+    this.findGlobalStats();
   }
 }
 </script>
