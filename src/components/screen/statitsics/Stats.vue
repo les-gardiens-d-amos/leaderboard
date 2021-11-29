@@ -1,6 +1,6 @@
 <template>
   <div class="stats-visu">
-    <AmosSpecies/>
+    <AmosSpecies :amospecies="species"/>
     <AmosTypes :amostypes="types"/>
   </div>
 </template>
@@ -23,11 +23,13 @@ export default {
   data() {
     return {
       types: null,
+      species: null
     }
   },
   beforeMount() {
     // console.log(this.amosStats.amos_types);
     this.types = this.amosStats.amos_types;
+    this.species = this.amosStats.amos_species;
   }
 }
 </script>

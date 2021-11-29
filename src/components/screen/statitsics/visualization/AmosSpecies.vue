@@ -9,21 +9,20 @@
 import Chart from "chart.js";
 
 export default {
+  props: {
+    amospecies: {
+      type: Object,
+      required: true
+    },
+  },
   data() {
     return {
       data: {
-        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        labels: [],
         datasets: [
           {
-            label: 'Dataset 1',
-            data: [1,4,2,5,7],
-            backgroundColor: [
-              "red",
-              "orange",
-              "yellow",
-              "green",
-              "blue"
-            ],
+            data: [],
+            backgroundColor: [],
           }
         ]
       },
@@ -36,6 +35,17 @@ export default {
     }
   },
   methods: {
+    manageDataChart() {
+      for (let specie in this.amospecies) {
+        this.data.labels.push(specie);
+        this.data.datasets[0].data.push(this.amospecies[specie]);
+        this.data.datasets[0].backgroundColor.push(this.generateRandomColor());
+      }
+      this.createChart();
+    },
+    generateRandomColor() {
+      return "#" + ((1<<24)*Math.random() | 0).toString(16);
+    },
     createChart() {
       let ctx = this.$refs.specieschart;
       let data = this.data;
@@ -48,7 +58,7 @@ export default {
     }
   },
   mounted() {
-    this.createChart();
+    this.manageDataChart();
   }
 }
 </script>
