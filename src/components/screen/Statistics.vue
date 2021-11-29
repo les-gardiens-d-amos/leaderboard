@@ -1,7 +1,7 @@
 <template>
   <div class="stats-container">
     <h1 class="stats-title">Statistiques</h1>
-    <Map/>
+    <Map :location="locations" v-if="dataLoaded"/>
   </div>
 </template>
 
@@ -11,6 +11,21 @@ import Map from "./statitsics/Map.vue";
 export default {
   components: {
     Map
+  },
+  data() {
+    return {
+      locations: null,
+      dataLoaded: false
+    }
+  },
+  mounted() {
+    this.$axios.get("https://happy-amos.herokuapp.com/amos/global/stats").then(response => {
+      // console.log(response.data);
+      this.locations = response.data.amos_location;
+      this.dataLoaded = true;
+    }).catch(error => {
+      console.log(error);
+    })
   }
 }
 </script>
