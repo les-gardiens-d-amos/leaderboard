@@ -2,17 +2,23 @@
   <div class="stats-visu">
     <AmosSpecies :amospecies="species"/>
     <AmosTypes :amostypes="types"/>
+    <UserRegister/>
+    <UserConnected/>
   </div>
 </template>
 
 <script>
 import AmosSpecies from "./visualization/AmosSpecies.vue";
 import AmosTypes from "./visualization/AmosTypes.vue";
+import UserRegister from "./visualization/UserRegister.vue";
+import UserConnected from "./visualization/UserConnected.vue";
 
 export default {
   components: {
     AmosSpecies,
-    AmosTypes
+    AmosTypes,
+    UserRegister,
+    UserConnected
   },
   props: {
     amosStats: {
@@ -40,12 +46,13 @@ export default {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .visualisation {
   width: 48%;
   margin-top: 30px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .visualisation-title {

@@ -1,6 +1,6 @@
 <template>
   <v-card class="visualisation">
-    <h2 class="visualisation-title">Plop</h2>
+    <h2 class="visualisation-title">Amos capturer :</h2>
     <canvas ref="specieschart" id="species-chart" class="species-chart"></canvas>
   </v-card>
 </template>
