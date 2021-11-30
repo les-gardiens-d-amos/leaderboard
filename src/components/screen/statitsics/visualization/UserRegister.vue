@@ -63,7 +63,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.userRegister);
     this.manageData();
   }
 }

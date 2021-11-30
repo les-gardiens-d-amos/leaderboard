@@ -3,7 +3,7 @@
     <AmosSpecies :amospecies="species"/>
     <AmosTypes :amostypes="types"/>
     <UserRegister :userRegister="userRegister"/>
-    <UserConnected/>
+    <UserConnected :userConnected="userConnected"/>
   </div>
 </template>
 
@@ -30,13 +30,15 @@ export default {
     return {
       types: null,
       species: null,
-      userRegister: null
+      userRegister: null,
+      userConnected: null
     }
   },
   beforeMount() {
     this.types = this.amosStats.amos_types;
     this.species = this.amosStats.amos_species;
     this.userRegister = this.amosStats.last_week_new_users;
+    this.userConnected = this.amosStats.last_week_users_connected;
   }
 }
 </script>
