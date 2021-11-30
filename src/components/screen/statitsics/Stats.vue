@@ -2,7 +2,7 @@
   <div class="stats-visu">
     <AmosSpecies :amospecies="species"/>
     <AmosTypes :amostypes="types"/>
-    <UserRegister/>
+    <UserRegister :userRegister="userRegister"/>
     <UserConnected/>
   </div>
 </template>
@@ -29,13 +29,14 @@ export default {
   data() {
     return {
       types: null,
-      species: null
+      species: null,
+      userRegister: null
     }
   },
   beforeMount() {
-    // console.log(this.amosStats.amos_types);
     this.types = this.amosStats.amos_types;
     this.species = this.amosStats.amos_species;
+    this.userRegister = this.amosStats.last_week_new_users;
   }
 }
 </script>

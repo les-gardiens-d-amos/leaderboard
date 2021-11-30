@@ -9,13 +9,19 @@
 import Chart from "chart.js";
 
 export default {
+  props: {
+    userRegister: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       data: {
-        labels: ["plop","plop","plop","plop","plop","plop", "plop"],
+        labels: [],
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56, 55, 40],
+          label: 'Nombre de joueur',
+          data: [],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -23,14 +29,28 @@ export default {
       },
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
         }
       },
     }
   },
   methods: {
+    manageData() {
+      for (let i = 0; i < this.userRegister.length; i++) {
+        for (let date in this.userRegister[i]) {
+          this.data.labels.push(this.manageDate(date));
+          this.data.datasets[0].data.push(this.userRegister[i][date]);
+        }
+      }
+      this.createChart();
+    },
+    manageDate(date) {
+      return this.$moment(date).locale("fr").format("MMM Do YY");
+    },
     createChart() {
       let ctx = this.$refs.userRegisterChart;
       let data = this.data;
@@ -43,7 +63,8 @@ export default {
     }
   },
   mounted() {
-    this.createChart();
+    console.log(this.userRegister);
+    this.manageData();
   }
 }
 </script>
