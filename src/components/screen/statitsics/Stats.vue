@@ -4,6 +4,7 @@
     <AmosTypes :amostypes="types"/>
     <UserRegister :userRegister="userRegister"/>
     <UserConnected :userConnected="userConnected"/>
+    <AmosCounter :amosCount="amosCount"/>
   </div>
 </template>
 
@@ -12,13 +13,15 @@ import AmosSpecies from "./visualization/AmosSpecies.vue";
 import AmosTypes from "./visualization/AmosTypes.vue";
 import UserRegister from "./visualization/UserRegister.vue";
 import UserConnected from "./visualization/UserConnected.vue";
+import AmosCounter from "./visualization/AmosCounter.vue";
 
 export default {
   components: {
     AmosSpecies,
     AmosTypes,
     UserRegister,
-    UserConnected
+    UserConnected,
+    AmosCounter
   },
   props: {
     amosStats: {
@@ -31,7 +34,8 @@ export default {
       types: null,
       species: null,
       userRegister: null,
-      userConnected: null
+      userConnected: null,
+      amosCount: null
     }
   },
   beforeMount() {
@@ -39,6 +43,7 @@ export default {
     this.species = this.amosStats.amos_species;
     this.userRegister = this.amosStats.last_week_new_users;
     this.userConnected = this.amosStats.last_week_users_connected;
+    this.amosCount = this.amosStats.last_week_amos;
   }
 }
 </script>
@@ -55,7 +60,11 @@ export default {
 .visualisation {
   width: 48%;
   margin-top: 30px;
-  /* margin-bottom: 30px; */
+}
+
+.visualisation-fullscreen {
+  width: 100%;
+  margin-top: 30px;
 }
 
 .visualisation-title {

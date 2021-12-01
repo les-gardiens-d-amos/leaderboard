@@ -1,7 +1,7 @@
 <template>
-  <v-card class="visualisation">
-    <h2 class="visualisation-title">Nombre de joueur inscrit :</h2>
-    <canvas ref="userRegisterChart" id="user-register-chart" class="user-register-chart"></canvas>
+  <v-card class="visualisation-fullscreen">
+    <h2 class="visualisation-title">Nombre d'amos capturer par jour :</h2>
+    <canvas ref="amosCountChart" id="amos-count-chart" class="amos-count-chart"></canvas>
   </v-card>
 </template>
 
@@ -10,7 +10,7 @@ import Chart from "chart.js";
 
 export default {
   props: {
-    userRegister: {
+    amosCount: {
       type: Array,
       required: true
     }
@@ -20,20 +20,20 @@ export default {
       data: {
         labels: [],
         datasets: [{
-          label: 'Nombre de joueur',
+          label: "Nombre d'amos capturer :",
           data: [],
           fill: false,
-          borderColor: 'rgb(75, 192, 192)',
+          borderColor: 'rgb(255, 100, 132)',
           tension: 0.1
         }]
       },
       options: {
         scales: {
           yAxes: [{
-              ticks: {
-                  beginAtZero: true,
-                  max: 100
-              }
+            ticks: {
+              beginAtZero: true,
+              max: 16
+            }
           }]
         }
       },
@@ -41,10 +41,10 @@ export default {
   },
   methods: {
     manageData() {
-      for (let i = 0; i < this.userRegister.length; i++) {
-        for (let date in this.userRegister[i]) {
+      for (let i = 0; i < this.amosCount.length; i++) {
+        for (let date in this.amosCount[i]) {
           this.data.labels.push(this.manageDate(date));
-          this.data.datasets[0].data.push(this.userRegister[i][date]);
+          this.data.datasets[0].data.push(this.amosCount[i][date]);
         }
       }
       this.createChart();
@@ -53,7 +53,7 @@ export default {
       return this.$moment(date).locale("fr").format("MMM Do YY");
     },
     createChart() {
-      let ctx = this.$refs.userRegisterChart;
+      let ctx = this.$refs.amosCountChart;
       let data = this.data;
       let options = this.options;
       new Chart(ctx, {
@@ -64,6 +64,8 @@ export default {
     }
   },
   mounted() {
+    // this.createChart();
+    // console.log(this.amosCount);
     this.manageData();
   }
 }
